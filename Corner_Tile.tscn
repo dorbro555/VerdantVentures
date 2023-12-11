@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bctc6axw127rv"]
+
+[ext_resource type="Texture2D" uid="uid://dx8mw4nyq0xxw" path="res://Assets/Tiles/HG_SS_Grass_Dirt_Tile_Corner_NW.png" id="1_ki7ed"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7o4w"]
+albedo_texture = ExtResource("1_ki7ed")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2aakm"]
+lightmap_size_hint = Vector2i(14, 12)
+size = Vector3(0.5, 0, 0.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_n7o4w")
+mesh = SubResource("BoxMesh_2aakm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://8yajqbj66mm"]
+
+[ext_resource type="PackedScene" uid="uid://cxkjc8mb753eg" path="res://player.tscn" id="1_m8i5l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7tml"]
+size = Vector3(150, 2, 150)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tkx6"]
+albedo_color = Color(1, 0.670588, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ehq6s"]
+material = SubResource("StandardMaterial3D_3tkx6")
+size = Vector3(64, 2, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bwno"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8wmv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3jl7"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="Main" type="Node"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_h7tml")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_ehq6s")
+
+[node name="Player" parent="." instance=ExtResource("1_m8i5l")]
+transform = Transform3D(2.49227, 0, 0, 0, 2.49227, 0, 0, 0, 1, 0, 0.763, 0)
+
+[node name="CameraPivot" type="Marker3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
+transform = Transform3D(0.40124, 0, 0, 0, 0.255443, 0.309424, 0, -0.771168, 0.636632, -0.00509295, 2.41765, 4.45604)
+projection = 1
+current = true
+size = 8.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.772889, 0.634542, 0, -0.634542, 0.772889, 0, 3.97695, 4.25038)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88235, 0.641824, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_1bwno")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127673, 0, 0)
+mesh = SubResource("BoxMesh_q8wmv")
+surface_material_override/0 = SubResource("StandardMaterial3D_e3jl7")
