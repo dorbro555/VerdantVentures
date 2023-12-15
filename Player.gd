@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var tile_size = 1
+var tile_size = 0.5
 var inputs = {"right": Vector3.RIGHT,
 			"left": Vector3.LEFT,
 			"up": Vector3.UP,
@@ -69,7 +69,7 @@ func _physics_process(delta):
 			# our move is legal, set destination so we can start moving towards it 
 			destination = global_position + ray.target_position
 			# Confine possible coordinates to the center of tiles
-			destination = destination.snapped(Vector3(XZ_VECTOR) * tile_size)
+			destination = destination.snapped(Vector3(XZ_VECTOR) * tile_size/2)
 			print('from',global_position, 'to', destination)
 
 	# Ground Velocity

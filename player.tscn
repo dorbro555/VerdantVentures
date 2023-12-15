@@ -27,6 +27,7 @@ vframes = 4
 shape = SubResource("BoxShape3D_shdea")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

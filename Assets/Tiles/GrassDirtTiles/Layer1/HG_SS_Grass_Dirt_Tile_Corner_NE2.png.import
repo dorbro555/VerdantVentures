@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxw6pu1yfm4po"
-path.s3tc="res://.godot/imported/HG_SS_Grass_Dirt_Tile_Right_1.png-a8c359871b06ce1b85ab19937189c1f4.s3tc.ctex"
+uid="uid://d4ldstaymyteg"
+path.s3tc="res://.godot/imported/HG_SS_Grass_Dirt_Tile_Corner_NE2.png-68422bed01cad11a4d0c1b732019d08b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Tiles/HG_SS_Grass_Dirt_Tile_Right_1.png"
-dest_files=["res://.godot/imported/HG_SS_Grass_Dirt_Tile_Right_1.png-a8c359871b06ce1b85ab19937189c1f4.s3tc.ctex"]
+source_file="res://Assets/Tiles/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Corner_NE2.png"
+dest_files=["res://.godot/imported/HG_SS_Grass_Dirt_Tile_Corner_NE2.png-68422bed01cad11a4d0c1b732019d08b.s3tc.ctex"]
 
 [params]
 

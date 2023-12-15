@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxw6pu1yfm4po"
-path.s3tc="res://.godot/imported/HG_SS_Grass_Dirt_Tile_Right_1.png-a8c359871b06ce1b85ab19937189c1f4.s3tc.ctex"
+uid="uid://cm6j84j63i54y"
+path="res://.godot/imported/HG_SS_Grass_Dirt_Tile_Layer2_Right2.png-c4bea82e88bd43113d77069b7ccd5e5c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/HG_SS_Grass_Dirt_Tile_Right_1.png"
-dest_files=["res://.godot/imported/HG_SS_Grass_Dirt_Tile_Right_1.png-a8c359871b06ce1b85ab19937189c1f4.s3tc.ctex"]
+source_file="res://Assets/Tiles/GrassDirtTiles/Layer2/HG_SS_Grass_Dirt_Tile_Layer2_Right2.png"
+dest_files=["res://.godot/imported/HG_SS_Grass_Dirt_Tile_Layer2_Right2.png-c4bea82e88bd43113d77069b7ccd5e5c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
