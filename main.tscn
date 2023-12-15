@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://8yajqbj66mm"]
 
 [ext_resource type="PackedScene" uid="uid://cxkjc8mb753eg" path="res://player.tscn" id="1_m8i5l"]
-[ext_resource type="MeshLibrary" uid="uid://b32j62w3lkxgt" path="res://Assets/OutsideTilesLayer1.tres" id="2_epqu3"]
+[ext_resource type="MeshLibrary" uid="uid://b6ykeo5xxnwi6" path="res://Assets/MeshLibraries/GrassDirtLayer1.meshlib" id="2_asr1j"]
 [ext_resource type="MeshLibrary" uid="uid://jjmxpbx5ew7t" path="res://Assets/OutsideTilesLayer2.tres" id="3_6wbhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h7tml"]
@@ -64,7 +64,7 @@ mesh = SubResource("BoxMesh_q8wmv")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3jl7")
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("2_epqu3")
+mesh_library = ExtResource("2_asr1j")
 cell_size = Vector3(0.5, 0.5, 0.5)
 cell_center_y = false
 data = {
