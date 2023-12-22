@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b7q3djpcurq6a"
+path="res://.godot/imported/Friend's House.obj-b672e5dc7a851e7da139af6f3073cabe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Friend's House.obj-b672e5dc7a851e7da139af6f3073cabe.mesh"]
+
+source_file="res://Assets/Models/Buildings/NewBarkTown/Friend's House/Friend's House.obj"
+dest_files=["res://.godot/imported/Friend's House.obj-b672e5dc7a851e7da139af6f3073cabe.mesh", "res://.godot/imported/Friend's House.obj-b672e5dc7a851e7da139af6f3073cabe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

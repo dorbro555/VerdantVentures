@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn2bps3k5vbqh"]
+
+[ext_resource type="Texture2D" uid="uid://c2h04hk0dccwm" path="res://Assets/Sprites/Hero_Overworld_Walk.png" id="1_i2eix"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_soh5m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ok75q"]
+radius = 0.125
+height = 0.35
+
+[node name="Oliver" type="CharacterBody3D"]
+transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
+floor_block_on_wall = false
+floor_max_angle = 1.0821
+script = ExtResource("1_soh5m")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_i2eix")
+hframes = 3
+vframes = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ok75q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cath8mffbmdx6"]
+
+[ext_resource type="PackedScene" uid="uid://drkdgl75e52s1" path="res://Assets/Models/Maps/newbarktown/000 -   map21_12c_glb/map21_12c.glb" id="1_2cdkm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q1yip"]
+size = Vector3(525, 0, 525)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7bknk"]
+size = Vector3(100, 50, 200)
+
+[node name="NewBarkTownMap" type="Node3D"]
+
+[node name="NewBarkTownTerrain" parent="." instance=ExtResource("1_2cdkm")]
+transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, 0, 0, 0)
+
+[node name="Ground" type="CollisionShape3D" parent="NewBarkTownTerrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.5, 0)
+shape = SubResource("BoxShape3D_q1yip")
+
+[node name="Trees1" type="CollisionShape3D" parent="NewBarkTownTerrain"]
+transform = Transform3D(1.43487, 0, 0, 0, 1, 0, 0, 0, 1.02864, -196.817, 22.4395, -172.233)
+shape = SubResource("BoxShape3D_7bknk")
+
+[node name="Trees2" type="CollisionShape3D" parent="NewBarkTownTerrain"]
+transform = Transform3D(-4.78488e-08, 0, 1.04363, 0, 1, 0, -1.09465, 0, -4.56187e-08, -28.1532, 22.4395, -222.752)
+shape = SubResource("BoxShape3D_7bknk")
+
+[node name="Trees3" type="CollisionShape3D" parent="NewBarkTownTerrain"]
+transform = Transform3D(-4.78488e-08, 0, 1.04363, 0, 1, 0, -1.09465, 0, -4.56187e-08, 164.123, 22.4396, -183.968)
+shape = SubResource("BoxShape3D_7bknk")
+
+[node name="Trees4" type="CollisionShape3D" parent="NewBarkTownTerrain"]
+transform = Transform3D(-5.2419e-08, 0, 0.400542, 0, 1, 0, -1.19921, 0, -1.75082e-08, 228.138, 22.4396, -94.2094)
+shape = SubResource("BoxShape3D_7bknk")

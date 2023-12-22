@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddxwfmipf337w"]
+
+[ext_resource type="PackedScene" uid="uid://d2o8srtgsm5y2" path="res://Assets/Models/Maps/cherrygrove/004 -   map16_12c/map16_12c.glb" id="1_ik486"]
+[ext_resource type="PackedScene" uid="uid://kcvvdfuleg1s" path="res://Assets/Models/Maps/cherrygrove/005 -   map17_12c/map17_12c.glb" id="2_ktbig"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epa0g"]
+size = Vector3(43, 0, 21.5)
+
+[node name="CherryGroveCity" type="Node3D"]
+
+[node name="map16_12c" parent="." instance=ExtResource("1_ik486")]
+transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, 0, 0, 0)
+
+[node name="map17_12c" parent="." instance=ExtResource("2_ktbig")]
+transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, 21.5, 0, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 0.735, 0)
+shape = SubResource("BoxShape3D_epa0g")

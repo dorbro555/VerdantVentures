@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://pbhu6ec2nk8w"]
+
+[ext_resource type="PackedScene" uid="uid://dyuklx36ifrid" path="res://Assets/Models/Maps/route 31/010 -   map17_08c/map17_08c.glb" id="1_efagu"]
+[ext_resource type="PackedScene" uid="uid://bmg1dtcc4k1fe" path="res://Assets/Models/Maps/route 31/009 -   map16_08c/map16_08c.glb" id="2_cig6i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awrl6"]
+size = Vector3(1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iu8ep"]
+size = Vector3(1, 0, 1)
+
+[node name="route31" type="Node3D"]
+
+[node name="map17_08c" parent="." instance=ExtResource("1_efagu")]
+transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, 0, 0, 0)
+
+[node name="map16_08c" parent="." instance=ExtResource("2_cig6i")]
+transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, -21.5, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_awrl6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.75, 0, 0)
+mesh = SubResource("BoxMesh_iu8ep")

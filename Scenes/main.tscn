@@ -1,18 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://8yajqbj66mm"]
+[gd_scene load_steps=8 format=3 uid="uid://8yajqbj66mm"]
 
-[ext_resource type="PackedScene" uid="uid://cxkjc8mb753eg" path="res://Scenes/player.tscn" id="1_4md44"]
-[ext_resource type="MeshLibrary" uid="uid://b6ykeo5xxnwi6" path="res://Assets/MeshLibraries/GrassDirtLayer1.meshlib" id="2_7wjle"]
-[ext_resource type="MeshLibrary" uid="uid://ce4kfq3ox0waa" path="res://Assets/MeshLibraries/GrassDirtLayer2.meshlib" id="3_oehkv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h7tml"]
-size = Vector3(150, 2, 150)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tkx6"]
-albedo_color = Color(1, 0.670588, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ehq6s"]
-material = SubResource("StandardMaterial3D_3tkx6")
-size = Vector3(64, 2, 64)
+[ext_resource type="PackedScene" uid="uid://bn2bps3k5vbqh" path="res://Scenes/Characters/oliver.tscn" id="1_nk0jg"]
+[ext_resource type="PackedScene" uid="uid://cath8mffbmdx6" path="res://Scenes/Environments/new_bark_town_map.tscn" id="2_vytx4"]
+[ext_resource type="PackedScene" uid="uid://dtvn36004w3by" path="res://Scenes/Environments/route_29.tscn" id="3_ogbif"]
+[ext_resource type="PackedScene" uid="uid://bkcx1oxfjiy13" path="res://Scenes/Environments/entire_johto_region.tscn" id="4_4ia4w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bwno"]
 
@@ -23,27 +14,17 @@ albedo_color = Color(0, 1, 1, 1)
 
 [node name="Main" type="Node"]
 
-[node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
-collision_layer = 0
-collision_mask = 0
+[node name="Oliver" parent="." instance=ExtResource("1_nk0jg")]
+transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -90, 2, 0)
+collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_h7tml")
+[node name="CameraPivot" type="Marker3D" parent="Oliver"]
+transform = Transform3D(2.8757, 0, 0, 0, 2.77771, -0.744285, 0, 0.298637, 1.11453, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_ehq6s")
-
-[node name="Player" parent="." instance=ExtResource("1_4md44")]
-transform = Transform3D(2.49227, 0, 0, 0, 2.49227, 0, 0, 0, 1, 0.25, 0.763, 0.25)
-
-[node name="CameraPivot" type="Marker3D" parent="Player"]
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(0.401241, 0, 0, 0, 0.255443, 0.309424, 0, -0.771167, 0.636632, -0.00509295, 2.41765, 4.45604)
+[node name="Camera3D" type="Camera3D" parent="Oliver/CameraPivot"]
+transform = Transform3D(0.133747, 0, 0, 0, 0.0653413, 0.140938, 0, -0.197261, 0.256815, -0.00509292, 2.41765, 4.45604)
 current = true
-fov = 25.0
+fov = 18.0
 size = 8.0
 near = 0.03
 far = 10000.0
@@ -51,31 +32,23 @@ far = 10000.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.772889, 0.634542, 0, -0.634542, 0.772889, 0, 3.97695, 4.25038)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88235, 0.641824, 0)
+[node name="BlueCube" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88235, 1.64182, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlueCube"]
 shape = SubResource("BoxShape3D_1bwno")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlueCube"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127673, 0, 0)
 mesh = SubResource("BoxMesh_q8wmv")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3jl7")
 
-[node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("2_7wjle")
-cell_size = Vector3(0.5, 0.5, 0.5)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(1, 65535, 6, 1, 0, 12, 1, 1, 13, 1, 2, 12, 1, 3, 15, 0, 65535, 11, 65535, 65535, 10, 65534, 65534, 6, 65533, 65534, 11, 65532, 65534, 7, 65531, 65535, 11, 65529, 65535, 11, 65530, 65535, 10, 65528, 65535, 10, 65527, 65534, 13, 65527, 65533, 12, 65527, 65532, 6, 65526, 65532, 11, 65524, 65532, 11, 65522, 65532, 11, 65525, 65532, 10, 65523, 65532, 10, 65521, 65532, 7, 65521, 65533, 8, 65521, 65534, 9, 65531, 0, 1441792, 65529, 0, 1441792, 65527, 0, 1441792, 65527, 2, 1441792, 65529, 2, 1441792, 65531, 2, 1441792, 65533, 2, 1441792, 65535, 2, 1441792, 0, 2, 1441793, 65534, 2, 1441793, 65532, 0, 1441793, 65532, 2, 1441793, 65530, 0, 1441793, 65530, 2, 1441793, 65528, 0, 1441793, 65528, 2, 1441793, 65531, 1, 1441794, 65529, 1, 1441794, 65527, 1, 1441794, 65528, 1, 1441795, 65530, 1, 1441795, 65533, 65535, 1441794, 65535, 0, 0, 65533, 0, 0, 0, 0, 1, 65534, 0, 1, 65535, 1, 2, 65533, 1, 2, 0, 1, 3, 65534, 1, 3, 65532, 1, 3, 65535, 3, 4, 0, 3, 5, 65534, 4, 12, 65534, 6, 12, 65534, 8, 12, 65534, 10, 12, 65534, 5, 13, 65534, 7, 13, 65534, 9, 13, 65534, 11, 13, 65534, 12, 15, 65533, 12, 5, 65531, 12, 5, 65529, 12, 5, 65527, 12, 5, 65525, 12, 5, 65523, 12, 5, 65532, 12, 4, 65530, 12, 4, 65528, 12, 4, 65526, 12, 4, 65524, 12, 4, 65522, 12, 4, 65521, 12, 14, 65521, 11, 8, 65520, 10, 5, 65519, 10, 4, 65517, 10, 4, 65518, 10, 5, 65516, 10, 14, 65516, 7, 7, 65516, 8, 8, 65516, 9, 9, 65518, 7, 6, 65517, 7, 10, 65519, 8, 10, 65520, 8, 11, 65521, 6, 8, 65521, 7, 9, 65521, 4, 9, 65521, 5, 8, 65521, 3, 8, 65520, 65535, 11, 65518, 65535, 11, 65516, 65535, 11, 65514, 65535, 11, 65512, 65535, 11, 65519, 65535, 10, 65517, 65535, 10, 65515, 65535, 10, 65513, 65535, 10, 65511, 0, 8, 65511, 1, 9, 65512, 2, 4, 65511, 2, 14, 65514, 2, 4, 65513, 2, 5, 65515, 2, 5, 65511, 65535, 7, 65520, 2, 5, 65526, 0, 1, 65524, 0, 1, 65522, 0, 1, 65520, 0, 1, 65518, 0, 1, 65516, 0, 1, 65514, 0, 1, 65512, 0, 1, 65526, 2, 1, 65524, 2, 1, 65522, 2, 1, 65525, 0, 0, 65523, 0, 0, 65521, 0, 0, 65519, 0, 0, 65517, 0, 0, 65515, 0, 0, 65513, 0, 0, 65526, 1, 3, 65524, 1, 3, 65522, 1, 3, 65520, 1, 3, 65518, 1, 2, 65516, 1, 3, 65514, 1, 3, 65512, 1, 3, 65525, 1, 2, 65523, 1, 2, 65521, 1, 2, 65519, 1, 2, 65517, 1, 2, 65515, 1, 2, 65513, 1, 2, 65525, 2, 2, 65523, 2, 2, 65532, 3, 2, 65532, 4, 1441792, 65533, 3, 3, 65533, 4, 1441793, 65530, 3, 2, 65530, 4, 1441792, 65531, 3, 3, 65531, 4, 1441793, 65526, 3, 2, 65526, 4, 1441792, 65527, 3, 3, 65527, 4, 1441793, 65528, 3, 2, 65528, 4, 1441792, 65529, 3, 3, 65529, 4, 1441793, 65522, 3, 2, 65522, 4, 1441792, 65523, 3, 3, 65523, 4, 1441793, 65524, 3, 2, 65524, 4, 1441792, 65525, 3, 3, 65525, 4, 1441793, 65522, 5, 2, 65522, 6, 1441792, 65523, 5, 3, 65523, 6, 1441793, 65524, 5, 2, 65524, 6, 1441792, 65525, 5, 3, 65525, 6, 1441793, 65526, 5, 2, 65526, 6, 1441792, 65527, 5, 3, 65527, 6, 1441793, 65528, 5, 2, 65528, 6, 1441792, 65529, 5, 3, 65529, 6, 1441793, 65530, 5, 2, 65530, 6, 1441792, 65531, 5, 3, 65531, 6, 1441793, 65532, 5, 2, 65532, 6, 1441792, 65533, 5, 3, 65533, 6, 1441793, 65522, 7, 2, 65522, 8, 1441792, 65523, 7, 3, 65523, 8, 1441793, 65524, 7, 2, 65524, 8, 1441792, 65525, 7, 3, 65525, 8, 1441793, 65526, 7, 2, 65526, 8, 1441792, 65527, 7, 3, 65527, 8, 1441793, 65528, 7, 2, 65528, 8, 1441792, 65529, 7, 3, 65529, 8, 1441793, 65530, 7, 2, 65530, 8, 1441792, 65531, 7, 3, 65531, 8, 1441793, 65532, 7, 2, 65532, 8, 1441792, 65533, 7, 3, 65533, 8, 1441793, 65522, 9, 2, 65522, 10, 1441792, 65523, 9, 3, 65523, 10, 1441793, 65524, 9, 2, 65524, 10, 1441792, 65525, 9, 3, 65525, 10, 1441793, 65526, 9, 2, 65526, 10, 1441792, 65527, 9, 3, 65527, 10, 1441793, 65528, 9, 2, 65528, 10, 1441792, 65529, 9, 3, 65529, 10, 1441793, 65530, 9, 2, 65530, 10, 1441792, 65531, 9, 3, 65531, 10, 1441793, 65532, 9, 2, 65532, 10, 1441792, 65533, 9, 3, 65533, 10, 1441793, 65522, 11, 2, 65523, 11, 3, 65524, 11, 2, 65525, 11, 3, 65526, 11, 2, 65527, 11, 3, 65528, 11, 2, 65529, 11, 3, 65530, 11, 2, 65531, 11, 3, 65532, 11, 2, 65533, 11, 3, 65517, 9, 2, 65518, 9, 3, 65519, 9, 2, 65520, 9, 3, 65521, 9, 2, 65517, 8, 1441793, 65522, 65534, 1, 65522, 65535, 3, 65523, 65534, 0, 65523, 65535, 2, 65524, 65534, 1, 65524, 65535, 3, 65525, 65534, 0, 65525, 65535, 2, 65526, 65534, 1, 65526, 65535, 3, 65522, 65533, 3, 65523, 65533, 2, 65524, 65533, 3, 65525, 65533, 2, 65526, 65533, 3)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+[node name="NewBarkTownMap" parent="." instance=ExtResource("2_vytx4")]
+visible = false
 
-[node name="GridMapLayer2" type="GridMap" parent="."]
-mesh_library = ExtResource("3_oehkv")
-cell_size = Vector3(0.5, 0.5, 0.5)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(65534, 65535, 2, 65532, 65535, 3, 65527, 65535, 2, 65521, 65535, 3, 65534, 3, 0, 65521, 10, 1, 65521, 8, 3, 65521, 2, 1, 65518, 8, 2)
-}
+[node name="Route29" parent="." instance=ExtResource("3_ogbif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 0)
+visible = false
+
+[node name="EntireJohtoRegion" parent="." instance=ExtResource("4_4ia4w")]

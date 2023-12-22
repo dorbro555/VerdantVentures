@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkcx1oxfjiy13"]
+
+[ext_resource type="PackedScene" uid="uid://cath8mffbmdx6" path="res://Scenes/Environments/new_bark_town_map.tscn" id="1_pj77n"]
+[ext_resource type="PackedScene" uid="uid://dtvn36004w3by" path="res://Scenes/Environments/route_29.tscn" id="2_eyku4"]
+[ext_resource type="PackedScene" uid="uid://ddxwfmipf337w" path="res://Scenes/Environments/cherry_grove_city.tscn" id="3_n8lto"]
+[ext_resource type="PackedScene" uid="uid://dikhfajowgkct" path="res://Scenes/Environments/route_30.tscn" id="4_d3l2k"]
+
+[node name="EntireJohtoRegion" type="Node3D"]
+
+[node name="NewBarkTownMap" parent="." instance=ExtResource("1_pj77n")]
+
+[node name="Route29" parent="." instance=ExtResource("2_eyku4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 0)
+
+[node name="CherryGroveCity" parent="." instance=ExtResource("3_n8lto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.5, 0, 0)
+
+[node name="route30" parent="." instance=ExtResource("4_d3l2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86, 0, -43)

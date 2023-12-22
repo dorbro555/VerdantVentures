@@ -1,0 +1,149 @@
+[gd_scene load_steps=34 format=3 uid="uid://bctc6axw127rv"]
+
+[ext_resource type="PackedScene" uid="uid://d2rnqjgdd041x" path="res://Scenes/Environments/misc/tile.tscn" id="1_0l8dl"]
+[ext_resource type="Texture2D" uid="uid://cm1ug6v1yy0vu" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Center_1.png" id="2_x2kts"]
+[ext_resource type="Texture2D" uid="uid://o6ch5ovhc14l" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Center_2.png" id="3_kdpri"]
+[ext_resource type="Texture2D" uid="uid://dtefetykfi03p" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Center_3.png" id="4_lvx65"]
+[ext_resource type="Texture2D" uid="uid://dpmtfg813avlv" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Center_4.png" id="5_4blhl"]
+[ext_resource type="Texture2D" uid="uid://bwbsvsghgyp3k" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Bottom_1.png" id="6_diyr7"]
+[ext_resource type="Texture2D" uid="uid://bs3iho7fywo72" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Bottom_2.png" id="7_yvtak"]
+[ext_resource type="Texture2D" uid="uid://cfwemxfa27fjg" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Corner_NE.png" id="8_58wqy"]
+[ext_resource type="Texture2D" uid="uid://bsvggqceak8sy" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Corner_NW.png" id="9_xkwhu"]
+[ext_resource type="Texture2D" uid="uid://c4airjmdw4bp8" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Left_1.png" id="10_4f7hi"]
+[ext_resource type="Texture2D" uid="uid://5y7nfdcjjffv" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Left_2.png" id="11_rde1b"]
+[ext_resource type="Texture2D" uid="uid://d164pa0qlr6eg" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Top_1.png" id="12_iassy"]
+[ext_resource type="Texture2D" uid="uid://hxsinvve721b" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Top_2.png" id="13_i3w86"]
+[ext_resource type="Texture2D" uid="uid://c3svy1h35blp0" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Right_1.png" id="14_x3682"]
+[ext_resource type="Texture2D" uid="uid://wn43q2or10oh" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Right_2.png" id="15_d1ufw"]
+[ext_resource type="Texture2D" uid="uid://cnsrvklo38lmo" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_SW.png" id="16_7o3mc"]
+[ext_resource type="Texture2D" uid="uid://ungdete48rhj" path="res://Assets/Tilesets/GrassDirtTiles/Layer1/HG_SS_Grass_Dirt_Tile_Corner_SE.png" id="17_laknu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3eryi"]
+albedo_texture = ExtResource("2_x2kts")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_117l7"]
+albedo_texture = ExtResource("3_kdpri")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrcsn"]
+albedo_texture = ExtResource("4_lvx65")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ois24"]
+albedo_texture = ExtResource("5_4blhl")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfl24"]
+albedo_texture = ExtResource("6_diyr7")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4buds"]
+albedo_texture = ExtResource("7_yvtak")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_758wi"]
+albedo_texture = ExtResource("8_58wqy")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhqg4"]
+albedo_texture = ExtResource("9_xkwhu")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0e3f"]
+albedo_texture = ExtResource("10_4f7hi")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7naal"]
+albedo_texture = ExtResource("11_rde1b")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b67hg"]
+albedo_texture = ExtResource("12_iassy")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdwo4"]
+albedo_texture = ExtResource("13_i3w86")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfxiy"]
+albedo_texture = ExtResource("14_x3682")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnt72"]
+albedo_texture = ExtResource("15_d1ufw")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv0fs"]
+albedo_texture = ExtResource("16_7o3mc")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jud1"]
+albedo_texture = ExtResource("17_laknu")
+texture_filter = 0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GrassDirtCenter1" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_3eryi")
+
+[node name="GrassDirtCenter2" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_117l7")
+
+[node name="GrassDirtCenter3" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_xrcsn")
+
+[node name="GrassDirtCenter4" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ois24")
+
+[node name="GrassDirtBottom1" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_lfl24")
+
+[node name="GrassDirtBottom2" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, -0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_4buds")
+
+[node name="GrassDirtCornerNE" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 1)
+surface_material_override/0 = SubResource("StandardMaterial3D_758wi")
+
+[node name="GrassDirtCornerNW" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 1)
+surface_material_override/0 = SubResource("StandardMaterial3D_jhqg4")
+
+[node name="GrassDirtLeft1" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_d0e3f")
+
+[node name="GrassDirtLeft2" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_7naal")
+
+[node name="GrassDirtTop1" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 1)
+surface_material_override/0 = SubResource("StandardMaterial3D_b67hg")
+
+[node name="GrassDirtTop2" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, 1)
+surface_material_override/0 = SubResource("StandardMaterial3D_gdwo4")
+
+[node name="GrassDirtRight1" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_hfxiy")
+
+[node name="GrassDirtRight2" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_pnt72")
+
+[node name="GrassDirtCornerSW" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, -0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_dv0fs")
+
+[node name="GrassDirtCornerSE" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, -0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_5jud1")
