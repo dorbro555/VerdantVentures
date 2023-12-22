@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://8yajqbj66mm"]
+[gd_scene load_steps=9 format=3 uid="uid://8yajqbj66mm"]
 
 [ext_resource type="PackedScene" uid="uid://bn2bps3k5vbqh" path="res://Scenes/Characters/oliver.tscn" id="1_nk0jg"]
 [ext_resource type="PackedScene" uid="uid://cath8mffbmdx6" path="res://Scenes/Environments/new_bark_town_map.tscn" id="2_vytx4"]
 [ext_resource type="PackedScene" uid="uid://dtvn36004w3by" path="res://Scenes/Environments/route_29.tscn" id="3_ogbif"]
 [ext_resource type="PackedScene" uid="uid://bkcx1oxfjiy13" path="res://Scenes/Environments/entire_johto_region.tscn" id="4_4ia4w"]
+[ext_resource type="Texture2D" uid="uid://qf0wsppfbb2w" path="res://Assets/Textures/MenuBG.PNG" id="5_3twj3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bwno"]
 
@@ -12,16 +13,35 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3jl7"]
 albedo_color = Color(0, 1, 1, 1)
 
-[node name="Main" type="Node"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Oliver" parent="." instance=ExtResource("1_nk0jg")]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(400, 240)
+render_target_update_mode = 4
+
+[node name="GameView" type="Node" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+
+[node name="Oliver" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("1_nk0jg")]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -90, 2, 0)
 collision_layer = 2
 
-[node name="CameraPivot" type="Marker3D" parent="Oliver"]
+[node name="CameraPivot" type="Marker3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/Oliver"]
 transform = Transform3D(2.8757, 0, 0, 0, 2.77771, -0.744285, 0, 0.298637, 1.11453, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Oliver/CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/Oliver/CameraPivot"]
 transform = Transform3D(0.133747, 0, 0, 0, 0.0653413, 0.140938, 0, -0.197261, 0.256815, -0.00509292, 2.41765, 4.45604)
 current = true
 fov = 18.0
@@ -29,26 +49,49 @@ size = 8.0
 near = 0.03
 far = 10000.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView"]
 transform = Transform3D(1, 0, 0, 0, 0.772889, 0.634542, 0, -0.634542, 0.772889, 0, 3.97695, 4.25038)
 
-[node name="BlueCube" type="StaticBody3D" parent="."]
+[node name="BlueCube" type="StaticBody3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88235, 1.64182, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BlueCube"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/BlueCube"]
 shape = SubResource("BoxShape3D_1bwno")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BlueCube"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/BlueCube"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127673, 0, 0)
 mesh = SubResource("BoxMesh_q8wmv")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3jl7")
 
-[node name="NewBarkTownMap" parent="." instance=ExtResource("2_vytx4")]
+[node name="NewBarkTownMap" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("2_vytx4")]
 visible = false
 
-[node name="Route29" parent="." instance=ExtResource("3_ogbif")]
+[node name="Route29" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("3_ogbif")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 0)
 visible = false
 
-[node name="EntireJohtoRegion" parent="." instance=ExtResource("4_4ia4w")]
+[node name="EntireJohtoRegion" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("4_4ia4w")]
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_3twj3")
