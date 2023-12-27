@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dikhfajowgkct"]
+[gd_scene load_steps=7 format=3 uid="uid://dikhfajowgkct"]
 
 [ext_resource type="PackedScene" uid="uid://d3g6a22sc3i2n" path="res://Assets/Models/Maps/route 30/006 -   map17_09c/map17_09c.glb" id="1_qxy68"]
 [ext_resource type="PackedScene" uid="uid://bct0nifq2qjov" path="res://Assets/Models/Maps/route 30/007 -   map17_10c/map17_10c.glb" id="2_lt7a8"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cca0plexsp50f" path="res://Assets/Models/Maps/route 30/008 -   map17_11c - Copy/map17_11c.glb" id="4_drgjm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p04r0"]
+size = Vector3(1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nqv8c"]
 size = Vector3(1, 0, 1)
 
 [node name="route30" type="Node3D"]
@@ -26,5 +29,10 @@ transform = Transform3D(0.042, 0, 0, 0, 0.042, 0, 0, 0, 0.042, 0, 0, 21.5)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999984, 0, -0.0057072, 0, 1, 0, 0.0057072, 0, 0.999984, 0, 1.36, 21.5)
+transform = Transform3D(0.999984, 0, -0.0057072, -0.0040356, 0.707107, -0.707095, 0.0040356, 0.707107, 0.707095, -7, 0.993232, 21.8668)
 mesh = SubResource("BoxMesh_p04r0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_nqv8c")

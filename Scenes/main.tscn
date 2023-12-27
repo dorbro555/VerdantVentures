@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://8yajqbj66mm"]
+[gd_scene load_steps=10 format=3 uid="uid://8yajqbj66mm"]
 
 [ext_resource type="PackedScene" uid="uid://bn2bps3k5vbqh" path="res://Scenes/Characters/oliver.tscn" id="1_nk0jg"]
 [ext_resource type="PackedScene" uid="uid://cath8mffbmdx6" path="res://Scenes/Environments/new_bark_town_map.tscn" id="2_vytx4"]
 [ext_resource type="PackedScene" uid="uid://dtvn36004w3by" path="res://Scenes/Environments/route_29.tscn" id="3_ogbif"]
 [ext_resource type="PackedScene" uid="uid://bkcx1oxfjiy13" path="res://Scenes/Environments/entire_johto_region.tscn" id="4_4ia4w"]
-[ext_resource type="Texture2D" uid="uid://qf0wsppfbb2w" path="res://Assets/Textures/MenuBG.PNG" id="5_3twj3"]
+[ext_resource type="Texture2D" uid="uid://c4efjjycfqdll" path="res://Assets/Textures/MenuBG-Full.PNG" id="5_ot4yc"]
+[ext_resource type="Script" path="res://Scenes/GameOfLife.gd" id="6_4ird8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bwno"]
 
@@ -37,6 +38,7 @@ render_target_update_mode = 4
 [node name="Oliver" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("1_nk0jg")]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -90, 2, 0)
 collision_layer = 2
+floor_stop_on_slope = false
 
 [node name="CameraPivot" type="Marker3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/Oliver"]
 transform = Transform3D(2.8757, 0, 0, 0, 2.77771, -0.744285, 0, 0.298637, 1.11453, 0, 0, 0)
@@ -84,6 +86,7 @@ layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer"]
 handle_input_locally = false
+size = Vector2i(320, 240)
 render_target_update_mode = 4
 
 [node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport"]
@@ -91,7 +94,27 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("5_3twj3")
+texture = ExtResource("5_ot4yc")
+
+[node name="GameOfLife" type="Panel" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_4ird8")
+
+[node name="CCell" type="ColorRect" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 0.580392, 1, 1)
+
+[node name="Cell" type="Sprite2D" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
+
+[node name="GenTimer" type="Timer" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
+autostart = true
+
+[connection signal="timeout" from="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife/GenTimer" to="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife" method="_on_gen_timer_timeout"]

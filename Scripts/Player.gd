@@ -36,7 +36,7 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-	print(get_floor_angle())
+#	print(get_floor_angle())
 
 
 func _on_hurtbox_hurt(damage):
