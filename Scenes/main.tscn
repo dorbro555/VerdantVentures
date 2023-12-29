@@ -22,28 +22,29 @@ offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 740.0
+offset_bottom = 240.0
+theme_override_constants/separation = 0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+[node name="MainView" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/MainView"]
 handle_input_locally = false
-size = Vector2i(400, 240)
+size = Vector2i(420, 240)
 render_target_update_mode = 4
 
-[node name="GameView" type="Node" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+[node name="GameView" type="Node" parent="HBoxContainer/MainView/SubViewport"]
 
-[node name="Oliver" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("1_nk0jg")]
+[node name="Oliver" parent="HBoxContainer/MainView/SubViewport/GameView" instance=ExtResource("1_nk0jg")]
 transform = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, -90, 2, 0)
 collision_layer = 2
 floor_stop_on_slope = false
 
-[node name="CameraPivot" type="Marker3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/Oliver"]
+[node name="CameraPivot" type="Marker3D" parent="HBoxContainer/MainView/SubViewport/GameView/Oliver"]
 transform = Transform3D(2.8757, 0, 0, 0, 2.77771, -0.744285, 0, 0.298637, 1.11453, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/Oliver/CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/MainView/SubViewport/GameView/Oliver/CameraPivot"]
 transform = Transform3D(0.133747, 0, 0, 0, 0.0653413, 0.140938, 0, -0.197261, 0.256815, -0.00509292, 2.41765, 4.45604)
 current = true
 fov = 18.0
@@ -51,70 +52,58 @@ size = 8.0
 near = 0.03
 far = 10000.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/MainView/SubViewport/GameView"]
 transform = Transform3D(1, 0, 0, 0, 0.772889, 0.634542, 0, -0.634542, 0.772889, 0, 3.97695, 4.25038)
 
-[node name="BlueCube" type="StaticBody3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView"]
+[node name="BlueCube" type="StaticBody3D" parent="HBoxContainer/MainView/SubViewport/GameView"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88235, 1.64182, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/BlueCube"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HBoxContainer/MainView/SubViewport/GameView/BlueCube"]
 shape = SubResource("BoxShape3D_1bwno")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView/BlueCube"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/MainView/SubViewport/GameView/BlueCube"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127673, 0, 0)
 mesh = SubResource("BoxMesh_q8wmv")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3jl7")
 
-[node name="NewBarkTownMap" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("2_vytx4")]
+[node name="NewBarkTownMap" parent="HBoxContainer/MainView/SubViewport/GameView" instance=ExtResource("2_vytx4")]
 visible = false
 
-[node name="Route29" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("3_ogbif")]
+[node name="Route29" parent="HBoxContainer/MainView/SubViewport/GameView" instance=ExtResource("3_ogbif")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 0)
 visible = false
 
-[node name="EntireJohtoRegion" parent="HBoxContainer/SubViewportContainer/SubViewport/GameView" instance=ExtResource("4_4ia4w")]
+[node name="EntireJohtoRegion" parent="HBoxContainer/MainView/SubViewport/GameView" instance=ExtResource("4_4ia4w")]
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="UIView" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/UIView"]
 handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/UIView/SubViewport"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/UIView/SubViewport/CenterContainer"]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 texture = ExtResource("5_ot4yc")
 
-[node name="GameOfLife" type="Panel" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GameOfLife" type="Node2D" parent="HBoxContainer/UIView/SubViewport/CenterContainer"]
 script = ExtResource("6_4ird8")
 
-[node name="CCell" type="ColorRect" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
-layout_mode = 0
+[node name="CCell" type="ColorRect" parent="HBoxContainer/UIView/SubViewport/CenterContainer/GameOfLife"]
 offset_right = 16.0
 offset_bottom = 16.0
-color = Color(1, 0.580392, 1, 1)
+color = Color(1, 0.34, 0.34, 0.5)
 
-[node name="Cell" type="Sprite2D" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
+[node name="Cell" type="Sprite2D" parent="HBoxContainer/UIView/SubViewport/CenterContainer/GameOfLife"]
 
-[node name="GenTimer" type="Timer" parent="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife"]
+[node name="GenTimer" type="Timer" parent="HBoxContainer/UIView/SubViewport/CenterContainer/GameOfLife"]
 autostart = true
 
-[connection signal="timeout" from="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife/GenTimer" to="HBoxContainer/PanelContainer/MarginContainer/SubViewportContainer/SubViewport/Panel/GameOfLife" method="_on_gen_timer_timeout"]
+[connection signal="timeout" from="HBoxContainer/UIView/SubViewport/CenterContainer/GameOfLife/GenTimer" to="HBoxContainer/UIView/SubViewport/CenterContainer/GameOfLife" method="_on_gen_timer_timeout"]

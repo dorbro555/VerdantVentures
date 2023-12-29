@@ -1,10 +1,13 @@
-extends Panel
+extends Node2D
 
 var grids = [{}, {}]
+var grid_template = {}
 var cells = {}
 var cell_size = 16 # 20 cells by 15 given a 320x240
+var width = 20
+var height = 15
 var alive_color: Color
-var dead_color = Color(32)
+var dead_color = Color(0, 0)
 var birth_nums = []
 var survival_nums = []
 var rng = RandomNumberGenerator.new()
@@ -21,10 +24,12 @@ func _process(delta):
 #		$Timer.start()
 
 func start_life():
+#	create_grid() # to implement later
 	insert_soup()
+#	insert_spaceship()
 #	set_rulestring([3],[2,3]) # Conways
 #	set_rulestring([2],[]) # Seeds
-#	set_rulestring([1,3,5,8],[0,2,4,7]) # Feux
+	set_rulestring([1,3,5,8],[0,2,4,7]) # Feux
 #	set_rulestring([2],[0]) # Live Free or Die
 #	set_rulestring([4,5,6,7,8],[2,3,4,5])# Walled Cities
 #	set_rulestring([3,5],[2,3,6]) # Eppstein
@@ -34,7 +39,14 @@ func start_life():
 #	set_rulestring([3],[0,2,3]) # DotLife not good, stabilizes eventually	
 #	set_rulestring([3,5],[2,3,4,5,7,8]) # Land Rush, like Walled Cities but more stable
 	$GenTimer.start(0.15)
-	
+
+# to create entire grid and stop needing to check if coord exists in grid beforehand
+func create_grid():
+	for x in range(0,20):
+		for y in range(0,15):
+			add_new_cell(Vector2(x,y), false)
+	grid_template = grids[1].duplicate()
+
 func set_rulestring(b,s):
 	birth_nums = b
 	survival_nums = s
@@ -58,7 +70,7 @@ func insert_spaceship():
 	add_new_cell(Vector2(10,4))
 	add_new_cell(Vector2(11,3))
 
-func add_new_cell(grid_pos_unbounded):
+func add_new_cell(grid_pos_unbounded, is_post_creation=true):
 	var grid_pos = Vector2(grid_pos_unbounded.x as int % 20, grid_pos_unbounded.y as int % 15) 
 	var pos = grid_pos * cell_size
 	var cell = $CCell.duplicate()
@@ -66,16 +78,9 @@ func add_new_cell(grid_pos_unbounded):
 	add_child(cell)
 	cell.show()
 	cells[grid_pos] = cell
-	grids[1][grid_pos] = true
+	grids[1][grid_pos] = is_post_creation
 
-func remove_cell(pos: Vector2):
-	var key = get_grid_pos(mouse_pos_to_cam_pos(pos))
-	# Check if user clicked in occupied position
-	if cells.has(key):
-		cells[key].queue_free()
-		cells.erase(key)
-		grids[1].erase(key)
-
+# go through every living cell and apply the rules of life on them
 func regenerate():
 #	the cells key is its position, so iterate over every existing cell
 	for key in cells.keys():
@@ -85,6 +90,7 @@ func regenerate():
 		else: # Dead
 			grids[1][key] = (birth_nums.has(n)) # in next gen, dead cell becomes alive with enough neighbors
 
+#update the visual representation of the cells on the grid.
 func update_cells():
 	for key in cells.keys():
 		cells[key].modulate = alive_color if grids[1][key] else dead_color
@@ -99,31 +105,23 @@ func get_num_live_cells(pos: Vector2, first_pass = true):
 			if x != 0 or y != 0:
 #				new_pos represents the current neighbor were viewing
 				var new_pos_unbounded = pos + Vector2(x, y)
-				
+#				we add the dimensions to the coordinates to remove negative numbers
 				var new_pos = Vector2(
 					new_pos_unbounded.x + 20 as int % 20, 
 					new_pos_unbounded.y + 15 as int % 15
 					)
 				# Check if the current neighbors position exists in the grid, avoid OUT_OF_BOUNDS err
 				if grids[0].has(new_pos):
+#					print('unincluded pos: ', new_pos)
 					if grids[0][new_pos]: # If alive
 						num_live_cells += 1
 #				if the neighbor's cell hasn't been created yet in the grid:
 				else:
 #					first_pass is true when this func is called from regen()
+#					false when called from 'add_new_cells()', so as to not check the neighbors of neighbors
 					if first_pass:
 						to_check.append(new_pos)
 	return num_live_cells
-
-#ignore; this is for grids that aren't bounded and thus not pre-defined
-func add_new_cells():
-	for pos in to_check:
-		var n = get_num_live_cells(pos, false)
-#		if live neighbors is 3 and the cell is currently dead in the newest generation, make it alive
-		if n == 3 and not grids[1].has(pos):
-			add_new_cell(pos)
-#	reset cells to check for next regen
-	to_check = []
 
 func _on_gen_timer_timeout():
 	print("start new generation!")
@@ -132,10 +130,20 @@ func _on_gen_timer_timeout():
 #	iterate over each cell and apply the rules of life to it
 	regenerate()
 #	then we add the neighbor cells that don't exist in the grid yet, and check them
-	add_new_cells()
+	add_new_cells() # not needed, as no cells get added to [to_check]
 #	update the cells color based off its status in the grid
 	update_cells()
-	
+
+#ignore; this is for grids that aren't bounded and thus not pre-defined
+func add_new_cells():
+	for pos in to_check:
+		var n = get_num_live_cells(pos, false)
+#		if live neighbors is 3 and the cell's position doesn't exist in the grid yet
+		if n == 3 and not grids[1].has(pos):
+			add_new_cell(pos)
+#	reset cells to check for next regen
+	to_check = []
+
 #ignore
 func get_grid_pos(pos: Vector2) -> Vector2:
 	var pixels = 32.0 / $Camera2D.zoom.x
@@ -174,3 +182,11 @@ func place_cell(pos: Vector2):
 func mouse_pos_to_cam_pos(pos):
 	return pos + $Camera2D.offset / $Camera2D.zoom - get_viewport_rect().size / 2
 
+#ignore
+func remove_cell(pos: Vector2):
+	var key = get_grid_pos(mouse_pos_to_cam_pos(pos))
+	# Check if user clicked in occupied position
+	if cells.has(key):
+		cells[key].queue_free()
+		cells.erase(key)
+		grids[1].erase(key)
